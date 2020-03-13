@@ -81,9 +81,9 @@ namespace DatingApp.API.Controllers
 
                 return Ok(new {
                     token = tokenHandler.WriteToken(token)
-            });
+                });
 
-                return StatusCode(500, "Computer says no");
+                //return StatusCode(500, "Computer says no");
             
         }
 
