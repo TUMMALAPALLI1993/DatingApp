@@ -7,9 +7,16 @@ import { AuthGuard } from './_gaurds/auth.guard';
 
 export const appRoutes: Routes = [
     // ordering is important for the routes
-    {path: 'home', component: HomeComponent},
-    {path: 'members', component: MemberListComponent, canActivate: [AuthGuard]},
-    {path: 'messages', component: MessagesComponent, canActivate: [AuthGuard]},
-    {path: 'lists', component: ListsComponent, canActivate: [AuthGuard]},
-    {path: '**', redirectTo: 'home', pathMatch: 'full'}
+    {path: '', component: HomeComponent},
+    {
+        path: '',
+        runGuardsAndResolvers: 'always',
+        canActivate: [AuthGuard],
+        children: [
+            {path: 'members', component: MemberListComponent},
+            {path: 'messages', component: MessagesComponent},
+            {path: 'lists', component: ListsComponent},
+        ]
+    },
+    {path: '**', redirectTo: '', pathMatch: 'full'}
 ];
