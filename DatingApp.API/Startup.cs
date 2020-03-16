@@ -1,5 +1,6 @@
 using System.Net;
 using System.Text;
+using AutoMapper;
 using DatingApp.API.Data;
 using DatingApp.API.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -35,6 +36,8 @@ namespace DatingApp.API
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
             services.AddCors();
+            //Just give our assembly by using type of one of the class
+            services.AddAutoMapper(typeof(DatingRepository).Assembly);
             services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository,AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
