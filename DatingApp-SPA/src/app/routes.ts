@@ -7,6 +7,8 @@ import { AuthGuard } from './_gaurds/auth.guard';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolver } from './_resolvers/member-Edit.resolver';
 
 export const appRoutes: Routes = [
     // ordering is important for the routes
@@ -20,6 +22,8 @@ export const appRoutes: Routes = [
             resolve: {users: MemberListResolver}},
             {path: 'members/:id', component: MemberDetailComponent,
                 resolve: {user: MemberDetailResolver}},
+            {path: 'member/edit', component: MemberEditComponent,
+                resolve: {user: MemberEditResolver}},
             {path: 'messages', component: MessagesComponent},
             {path: 'lists', component: ListsComponent},
         ]
