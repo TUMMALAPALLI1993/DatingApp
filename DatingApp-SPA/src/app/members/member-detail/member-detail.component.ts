@@ -3,7 +3,7 @@ import { User } from 'src/app/_models/user';
 import { UserService } from 'src/app/_services/user.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
-import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 
 @Component({
   selector: 'app-member-detail',
@@ -19,7 +19,7 @@ export class MemberDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.user = data.user;
+      this.user = data['user'];
     });
 
     this.galleryOptions = [
@@ -39,9 +39,9 @@ export class MemberDetailComponent implements OnInit {
       const imageUrls = [];
       for (const photo of this.user.photos) {
         imageUrls.push({
-          small: photo.urr,
-          medium: photo.urr,
-          big: photo.urr,
+          small: photo.url,
+          medium: photo.url,
+          big: photo.url,
           description: photo.description,
         });
       }
