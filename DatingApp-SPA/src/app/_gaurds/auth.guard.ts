@@ -5,6 +5,8 @@ import { AlertifyService } from '../_services/alertify.service';
 
 @Injectable({
   providedIn: 'root'
+    // we declare that this service should be created
+    // by the root application injector.
 })
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router, private alertify: AlertifyService) {}
