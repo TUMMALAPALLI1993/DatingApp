@@ -36,6 +36,8 @@ namespace DatingApp.API
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
             services.AddCors();
+            //To bind the cloudinarysettings from appsettings.json to Helper(folder) cloudinarysettings 
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             //Just give our assembly by using type of one of the class
             services.AddAutoMapper(typeof(DatingRepository).Assembly);
             services.AddTransient<Seed>();
