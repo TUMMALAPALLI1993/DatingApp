@@ -12,6 +12,10 @@ namespace DatingApp.API.Data
         {
             this._context = context;
         }
+        public void Update<T>(T entity) where T : class
+        {
+            _context.Update(entity);
+        }
         public void Add<T>(T entity) where T : class
         {
             _context.Add(entity);
