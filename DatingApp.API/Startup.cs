@@ -84,9 +84,10 @@ namespace DatingApp.API
             }
 
             //app.UseHttpsRedirection();
-
+            //AllowCredentials, sends the cookies
+            //app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
+            
             app.UseRouting();
 
             app.UseAuthentication();
