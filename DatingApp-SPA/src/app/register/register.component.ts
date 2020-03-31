@@ -18,10 +18,14 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     // Define username,password as a key value pair for the formgroup
     this.registerForm =  new FormGroup({
-      username: new FormControl('HelloUser', Validators.required),
+      username: new FormControl('', Validators.required),
       password: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]),
       confirmPassword: new FormControl('', Validators.required)
-    });
+    }, this.passwordMatchValidator);
+  }
+
+  passwordMatchValidator(fg: FormGroup) {
+    return fg.get('password').value === fg.get('confirmPassword').value ? null : {mismatch: true};
   }
 
   register() {

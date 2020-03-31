@@ -3,15 +3,45 @@
   <hr>
 
   <div class="form-group">
-    <input type="text" class="form-control" formControlName="username" placeholder="Username">
+    <input type="text" class="form-control" 
+     [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}"
+     formControlName="username" placeholder="Username">
+     <div class="invalid-feedback">Please choose a username</div>
   </div>
 
   <div class="form-group">
-    <input type="password" class="form-control" formControlName="password" placeholder="Password">
+    <input type="password" class="form-control"
+    [ngClass]="{'is-invalid': registerForm.get('password').errors && registerForm.get('password').touched}"
+    formControlName="password" placeholder="Password">
+    <!-- Password required with has error required field -->
+    <div class="invalid-feedback"
+      *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched">
+       Password is required</div>
+    <!-- Password for minimum length has error -->
+    <div class="invalid-feedback"
+      *ngIf="registerForm.get('password').hasError('minlength') && registerForm.get('password').touched">
+       Password must be at least 4 letter</div>
+    <!-- Password for maximum length has error -->
+    <div class="invalid-feedback"
+      *ngIf="registerForm.get('password').hasError('maxlength') && registerForm.get('password').touched">
+       Password should be maximum 10 letter</div>
   </div>
 
   <div class="form-group">
-    <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm Password">
+    <input type="password" class="form-control" 
+    [ngClass]="{'is-invalid': registerForm.get('confirmPassword').errors 
+    && registerForm.get('confirmPassword').touched 
+    || registerForm.get('confirmPassword').touched 
+    && registerForm.hasError('mismatch')}"
+    formControlName="confirmPassword" placeholder="Confirm Password">
+  <!-- confirmPassword required with has error required field -->
+  <div class="invalid-feedback"
+    *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched">
+    Confirm Password is required</div>
+  <!-- confirmPassword mismatch we applied on the form not on the field so (registerForm.hasError('mismatch')) don't use (registerForm.get('confirmPassword').hasError('mismatch')) -->
+  <div class="invalid-feedback"
+    *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword').touched">
+    Confirm Password must match with your password</div>
   </div>
 
   <div class="form-group text-center">
@@ -21,6 +51,6 @@
   
 </form>
 
-<!-- To check the values on the form for testing -->
+<!-- To check the values on the form for testing
 <p>Form values: {{registerForm.value | json}}</p>
-<p>Form values: {{registerForm.status | json}}</p>
+<p>Form values: {{registerForm.status | json}}</p> -->
